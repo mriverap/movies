@@ -1,31 +1,44 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 import {useMoviesData} from '../hooks/queries';
-import {FlatList} from 'react-native-gesture-handler';
+import {Movie} from '../interfaces/movieInterface';
 
-export const Home = ({navigation}: props) => {
+type ItemProps = {
+  movie: Movie;
+};
+
+const Item = ({movie}: ItemProps) => {
+  return (
+    <View style={styles.itemContainer}>
+      <Text>Title: {movie.title}</Text>
+      <Text>Release date: {movie.release_date}</Text>
+      {/* <Text>Overview: {item.overview}</Text> */}
+    </View>
+  );
+};
+
+export const Home = props => {
+  const {navigation} = props;
   const query = useMoviesData();
 
-  const Item = ({item}) => {
-    return (
-      <View style={styles.itemContainer}>
-        <Text>Title: {item.title}</Text>
-        <Text>Release date: {item.release_date}</Text>
-        {/* <Text>Overview: {item.overview}</Text> */}
-      </View>
-    );
-  };
   return (
     <View style={styles.container}>
       <Text>Home Screen</Text>
       <TouchableOpacity onPress={() => navigation.navigate('Details')}>
         <Text>Details</Text>
       </TouchableOpacity>
-      {query.isLoading && <Text>Loading...</Text>}
+      {query.isLoading && <ActivityIndicator color="purple" size={100} />}
       {query.isSuccess && (
         <FlatList
-          data={query.data?.data.results}
-          renderItem={({item}) => <Item item={item} />}
+          data={query.data.data.results}
+          renderItem={({item}) => <Item movie={item} />}
         />
       )}
     </View>
