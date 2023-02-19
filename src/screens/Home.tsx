@@ -8,24 +8,11 @@ import {
 } from 'react-native';
 import React from 'react';
 import {useMoviesData} from '../hooks/queries';
-import {Movie} from '../interfaces/movieInterface';
+import {MovieCard} from '../components/MovieCard';
+import {useNavigation} from '@react-navigation/native';
 
-type ItemProps = {
-  movie: Movie;
-};
-
-const Item = ({movie}: ItemProps) => {
-  return (
-    <View style={styles.itemContainer}>
-      <Text>Title: {movie.title}</Text>
-      <Text>Release date: {movie.release_date}</Text>
-      {/* <Text>Overview: {item.overview}</Text> */}
-    </View>
-  );
-};
-
-export const Home = props => {
-  const {navigation} = props;
+export const Home = () => {
+  const navigation = useNavigation();
   const query = useMoviesData();
 
   return (
@@ -38,7 +25,8 @@ export const Home = props => {
       {query.isSuccess && (
         <FlatList
           data={query.data.data.results}
-          renderItem={({item}) => <Item movie={item} />}
+          renderItem={({item}) => <MovieCard movie={item} imageSizeIndex={5} />}
+          horizontal={true}
         />
       )}
     </View>
