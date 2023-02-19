@@ -11,7 +11,7 @@ const clientAPI = axios.create({
   baseURL: movieBaseUrl,
   params: {
     api_key: MOVIE_API_KEY,
-    language: 'es-ES',
+    language: 'en-US',
   },
 });
 
@@ -22,9 +22,10 @@ const configAPI = axios.create({
   },
 });
 
-export const useMoviesData = () => {
-  const query = useQuery(['movies'], () =>
-    clientAPI.get<MoviesNowPlaying>('/now_playing'),
+// now_playing, upcoming, popular, top_rated
+export const useMoviesData = (filter: string) => {
+  const query = useQuery(['movies', filter], () =>
+    clientAPI.get<MoviesNowPlaying>(`/${filter}`),
   );
 
   return query;

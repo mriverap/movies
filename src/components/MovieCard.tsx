@@ -1,7 +1,8 @@
-import {Image, StyleSheet, View} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {Movie} from '../interfaces/movieInterface';
 import {imageBaseUrl, imageSize, cardSize} from '../hooks/constants';
+import {useNavigation} from '@react-navigation/native';
 
 interface MovieCardProps {
   movie: Movie;
@@ -9,20 +10,24 @@ interface MovieCardProps {
 }
 
 export const MovieCard = ({movie, imageSizeIndex}: MovieCardProps) => {
+  const navigation = useNavigation();
+
   const uri = `${imageBaseUrl}${imageSize[imageSizeIndex]}${movie.poster_path}`;
-  console.log(uri);
   return (
-    <View style={{...styles.container, ...cardSize[imageSizeIndex]}}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate('Details', {movie})}
+      style={{
+        ...styles.imageContainer,
+        ...cardSize[imageSizeIndex],
+        marginRight: cardSize[imageSizeIndex].width / 10,
+      }}>
       <Image source={{uri}} style={styles.image} />
-    </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    margin: 2,
-  },
-  image: {
+  imageContainer: {
     flex: 1,
     borderRadius: 18,
     shadowColor: '#000',
@@ -32,7 +37,10 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-
-    // elevation: 5,
+    elevation: 5,
+  },
+  image: {
+    flex: 1,
+    borderRadius: 18,
   },
 });
