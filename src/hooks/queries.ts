@@ -1,13 +1,24 @@
 import axios from 'axios';
 import {useQuery} from '@tanstack/react-query';
-import {MoviesNowPlaying} from '../interfaces/movieInterface';
+import {
+  MoviesNowPlaying,
+  MovieDBConfiguration,
+} from '../interfaces/movieInterface';
 import {MOVIE_API_KEY} from '../../secrets';
+import {movieBaseUrl, configuratioAPIUrl} from '../hooks/constants';
 
 const clientAPI = axios.create({
-  baseURL: 'https://api.themoviedb.org/3/movie',
+  baseURL: movieBaseUrl,
   params: {
     api_key: MOVIE_API_KEY,
     language: 'es-ES',
+  },
+});
+
+const configAPI = axios.create({
+  baseURL: configuratioAPIUrl,
+  params: {
+    api_key: MOVIE_API_KEY,
   },
 });
 
@@ -16,5 +27,12 @@ export const useMoviesData = () => {
     clientAPI.get<MoviesNowPlaying>('/now_playing'),
   );
 
+  return query;
+};
+
+export const useMoviesConfiguration = () => {
+  const query = useQuery(['movies', 'config'], () =>
+    configAPI.get<MovieDBConfiguration>('/'),
+  );
   return query;
 };
