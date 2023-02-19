@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {useQuery} from '@tanstack/react-query';
 import {
+  Credits,
   MoviesNowPlaying,
   MovieDBConfiguration,
 } from '../interfaces/movieInterface';
@@ -28,6 +29,13 @@ export const useMoviesData = (filter: string) => {
     clientAPI.get<MoviesNowPlaying>(`/${filter}`),
   );
 
+  return query;
+};
+
+export const useMovieCredits = (movie_id: string) => {
+  const query = useQuery(['movie', movie_id, 'credits'], () => {
+    clientAPI.get<Credits>(`/${movie_id}/credits`);
+  });
   return query;
 };
 
