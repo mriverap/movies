@@ -1,47 +1,24 @@
-import {
-  ActivityIndicator,
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
 import React from 'react';
-import {useMoviesData} from '../hooks/queries';
-import {MovieCard} from '../components/MovieCard';
-import {useNavigation} from '@react-navigation/native';
+import {StyleSheet, ScrollView} from 'react-native';
+
+import {MovieCarousel} from '../components/MovieCarousel';
+import {MovieList} from '../components/MovieList';
 
 export const Home = () => {
-  const navigation = useNavigation();
-  const query = useMoviesData();
-
   return (
-    <View style={styles.container}>
-      <Text>Home Screen</Text>
-      <TouchableOpacity onPress={() => navigation.navigate('Details')}>
-        <Text>Details</Text>
-      </TouchableOpacity>
-      {query.isLoading && <ActivityIndicator color="purple" size={100} />}
-      {query.isSuccess && (
-        <FlatList
-          data={query.data.data.results}
-          renderItem={({item}) => <MovieCard movie={item} imageSizeIndex={5} />}
-          horizontal={true}
-        />
-      )}
-    </View>
+    <ScrollView style={styles.container}>
+      <MovieCarousel filter="now_playing" imageSize={4} title="Now Playing" />
+      <MovieList filter="popular" imageSize={2} title="Popular" />
+      <MovieList filter="top_rated" imageSize={2} title="Top rated" />
+      <MovieList filter="upcoming" imageSize={2} title="Upcoming" />
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 20,
-  },
-  itemContainer: {
-    borderColor: 'grey',
-    borderWidth: 1,
-    marginBottom: 1,
-    padding: 5,
+    marginTop: 30,
+    marginBottom: 30,
   },
 });
