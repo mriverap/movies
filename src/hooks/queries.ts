@@ -33,9 +33,9 @@ export const useMoviesData = (filter: string) => {
 };
 
 export const useMovieCredits = (movie_id: string) => {
-  const query = useQuery(['movie', movie_id, 'credits'], () => {
-    clientAPI.get<Credits>(`/${movie_id}/credits`);
-  });
+  const query = useQuery(['movie', movie_id, 'credits'], () =>
+    clientAPI.get<Credits>(`/${movie_id}/credits`),
+  );
   return query;
 };
 
