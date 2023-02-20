@@ -1,10 +1,9 @@
 import axios from 'axios';
 import {useQuery} from '@tanstack/react-query';
-import {
-  Credits,
-  MoviesNowPlaying,
-  MovieDBConfiguration,
-} from '../interfaces/movieInterface';
+import {MoviesNowPlaying} from '../interfaces/movies';
+import {Credits} from '../interfaces/credits';
+import {MovieDBConfiguration} from '../interfaces/configuration';
+import {Genres} from '../interfaces/genre';
 import {MOVIE_API_KEY} from '../../secrets';
 import {movieBaseUrl, configuratioAPIUrl} from '../hooks/constants';
 
@@ -25,8 +24,8 @@ const configAPI = axios.create({
 
 // now_playing, upcoming, popular, top_rated
 export const useMoviesData = (filter: string) => {
-  const query = useQuery(['movies', filter], () =>
-    clientAPI.get<MoviesNowPlaying>(`/${filter}`),
+  const query = useQuery(['movie', filter], () =>
+    clientAPI.get<MoviesNowPlaying>(`/movie/${filter}`),
   );
 
   return query;
@@ -34,14 +33,29 @@ export const useMoviesData = (filter: string) => {
 
 export const useMovieCredits = (movie_id: string) => {
   const query = useQuery(['movie', movie_id, 'credits'], () =>
-    clientAPI.get<Credits>(`/${movie_id}/credits`),
+    clientAPI.get<Credits>(`/movie/${movie_id}/credits`),
   );
   return query;
 };
 
 export const useMoviesConfiguration = () => {
-  const query = useQuery(['movies', 'config'], () =>
-    configAPI.get<MovieDBConfiguration>('/'),
+  const query = useQuery(
+    ['movies', 'config'],
+    () => configAPI.get<MovieDBConfiguration>('/'),
+    {
+      staleTime: 1000 * 60 * 60 * 24,
+    },
+  );
+  return query;
+};
+
+export const useGenres = () => {
+  const query = useQuery(
+    ['genre', 'movie', 'list'],
+    () => clientAPI.get<Genres>('/genre/movie/list'),
+    {
+      staleTime: 1000 * 60 * 60 * 24,
+    },
   );
   return query;
 };

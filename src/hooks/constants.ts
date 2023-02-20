@@ -1,4 +1,4 @@
-export const movieBaseUrl = 'https://api.themoviedb.org/3/movie';
+export const movieBaseUrl = 'https://api.themoviedb.org/3/';
 export const configuratioAPIUrl = 'https://api.themoviedb.org/3/configuration';
 export const imageBaseUrl = 'https://image.tmdb.org/t/p/';
 export const imageSize = ['w45', 'w92', 'w154', 'w185', 'w300', 'w500'];
