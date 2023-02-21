@@ -30,7 +30,7 @@ const SubTitle = ({movie}: SubTitleProps) => {
 
   return (
     <View style={styles.rowView}>
-      <Icon iconName="star" size={12} color="#900" />
+      <Icon name="star-outline" size={16} color="grey" />
       <Text style={styles.subTitle}>{movie.vote_average}</Text>
       <View style={{marginLeft: 10}}>
         <Text style={styles.subTitle}>{genreNames}</Text>
@@ -82,5 +82,6 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     fontSize: 14,
+    marginLeft: 5,
   },
 });
