@@ -1,8 +1,7 @@
-import {Image, StyleSheet, TouchableOpacity} from 'react-native';
+import {Image, StyleSheet, View} from 'react-native';
 import React from 'react';
 import {Movie} from '../interfaces';
 import {imageBaseUrl, imageSize, cardSize} from '../hooks/constants';
-import {useNavigation} from '@react-navigation/native';
 
 interface MovieCardProps {
   movie: Movie;
@@ -10,19 +9,15 @@ interface MovieCardProps {
 }
 
 export const MovieCard = ({movie, imageSizeIndex}: MovieCardProps) => {
-  const navigation = useNavigation();
-
   const uri = `${imageBaseUrl}${imageSize[imageSizeIndex]}${movie.poster_path}`;
   return (
-    <TouchableOpacity
-      onPress={() => navigation.navigate('Details', {movie})}
+    <View
       style={{
         ...styles.imageContainer,
         ...cardSize[imageSizeIndex],
-        marginRight: cardSize[imageSizeIndex].width / 10,
       }}>
       <Image source={{uri}} style={styles.image} />
-    </TouchableOpacity>
+    </View>
   );
 };
 
