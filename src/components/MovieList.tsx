@@ -4,18 +4,26 @@ import {
   FlatList,
   ActivityIndicator,
   Text,
+  TouchableOpacity,
 } from 'react-native';
 import React from 'react';
 import {MovieCard} from './MovieCard';
 import {useMoviesData} from '../hooks/queries';
+import {cardSize} from '../hooks/constants';
+import {HomeProps} from '../screens/Home';
 
-type MovieListProps = {
+type MovieListProps = HomeProps & {
   title: string;
   filter: string;
   imageSize: number;
 };
 
-export const MovieList = ({filter, imageSize, title}: MovieListProps) => {
+export const MovieList = ({
+  navigation,
+  filter,
+  imageSize,
+  title,
+}: MovieListProps) => {
   const query = useMoviesData(filter);
 
   if (query.isLoading) {
@@ -28,9 +36,15 @@ export const MovieList = ({filter, imageSize, title}: MovieListProps) => {
         </View>
         <FlatList
           data={query.data?.data.results}
-          renderItem={({item}) => (
-            <MovieCard movie={item} imageSizeIndex={imageSize} />
-          )}
+          renderItem={({item}) => {
+            return (
+              <TouchableOpacity
+                onPress={() => navigation.navigate('Details', {movie: item})}
+                style={{marginRight: cardSize[imageSize].width / 10}}>
+                <MovieCard movie={item} imageSizeIndex={imageSize} />
+              </TouchableOpacity>
+            );
+          }}
           horizontal={true}
         />
       </View>

@@ -1,23 +1,26 @@
 import React from 'react';
 import {
-  View,
-  useWindowDimensions,
   ActivityIndicator,
-  Text,
   StyleSheet,
+  Text,
+  TouchableOpacity,
+  useWindowDimensions,
+  View,
 } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import {MovieCard} from '../components';
 import {cardSize} from '../hooks/constants';
 import {useMoviesData} from '../hooks/queries';
+import {HomeProps} from '../screens/Home';
 
-type MovieCarouselProps = {
+type MovieCarouselProps = HomeProps & {
   filter: string;
   imageSize: number;
   title: string;
 };
 
 export const MovieCarousel = ({
+  navigation,
   imageSize,
   filter,
   title,
@@ -35,9 +38,15 @@ export const MovieCarousel = ({
         </View>
         <Carousel
           data={queryNowPlaying.data?.data.results ?? []}
-          renderItem={({item}) => (
-            <MovieCard movie={item} imageSizeIndex={imageSize} />
-          )}
+          renderItem={({item}) => {
+            return (
+              <TouchableOpacity
+                onPress={() => navigation.navigate('Details', {movie: item})}
+                style={styles.carouselCard}>
+                <MovieCard movie={item} imageSizeIndex={imageSize} />
+              </TouchableOpacity>
+            );
+          }}
           sliderWidth={windowWidth}
           itemWidth={cardSize[imageSize].width}
           layout={'default'}
@@ -55,5 +64,8 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 20,
     fontWeight: 'bold',
+  },
+  carouselCard: {
+    flex: 1,
   },
 });

@@ -9,11 +9,7 @@ import {RootStackParamList} from '../navigation/Navigator';
 import {useGenres} from '../hooks/queries';
 import moment from 'moment';
 
-type Props = StackScreenProps<RootStackParamList, 'Details'>;
-
-type DetailsProps = Props & {
-  movie: Movie;
-};
+type DetailsProps = StackScreenProps<RootStackParamList, 'Details'>;
 
 type SubTitleProps = {
   movie: Movie;

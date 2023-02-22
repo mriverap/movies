@@ -5,7 +5,7 @@ import {Movie} from '../interfaces/movies';
 
 export type RootStackParamList = {
   Home: undefined;
-  Details: {movie: Movie} | undefined;
+  Details: {movie: Movie};
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
