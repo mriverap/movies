@@ -1,8 +1,7 @@
 import React from 'react';
 import {StyleSheet, ScrollView} from 'react-native';
 
-import {MovieCarousel} from '../components/MovieCarousel';
-import {MovieList} from '../components/MovieList';
+import {MovieCarousel, MovieList} from '../components';
 
 export const Home = () => {
   return (

@@ -7,7 +7,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
-import {MovieCard} from '../components/MovieCard';
+import {MovieCard} from '../components';
 import {cardSize} from '../hooks/constants';
 import {useMoviesData} from '../hooks/queries';
 

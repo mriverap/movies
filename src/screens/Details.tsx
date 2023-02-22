@@ -2,9 +2,7 @@ import React from 'react';
 import {StyleSheet, View, ScrollView, Text} from 'react-native';
 import type {StackScreenProps} from '@react-navigation/stack';
 import {Movie} from '../interfaces/movies';
-import {CastList} from '../components/CastList';
-import {DetailSection} from '../components/DetailSection';
-import {MovieCard} from '../components/MovieCard';
+import {CastList, DetailSection, MovieCard} from '../components';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import {RootStackParamList} from '../navigation/Navigator';
