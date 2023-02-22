@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View, Image} from 'react-native';
 import React from 'react';
-import {Cast} from '../interfaces/movies';
+import {Cast} from '../interfaces';
 import {imageBaseUrl, imageSize, cardSize} from '../hooks/constants';
 
 type ActorCardProps = {

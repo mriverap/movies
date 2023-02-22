@@ -1,6 +1,6 @@
 import {Image, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
-import {Movie} from '../interfaces/movies';
+import {Movie} from '../interfaces';
 import {imageBaseUrl, imageSize, cardSize} from '../hooks/constants';
 import {useNavigation} from '@react-navigation/native';
 
