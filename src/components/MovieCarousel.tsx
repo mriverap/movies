@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import {MovieCard} from '../components';
-import {cardSize} from '../hooks/constants';
+import {cardSize} from '../helpers/constants';
 import {useMoviesData} from '../hooks/queries';
 import {HomeProps} from '../screens/Home';
 

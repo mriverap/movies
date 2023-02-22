@@ -1,7 +1,7 @@
 import {Image, StyleSheet, View} from 'react-native';
 import React from 'react';
 import {Movie} from '../interfaces';
-import {imageBaseUrl, imageSize, cardSize} from '../hooks/constants';
+import {imageBaseUrl, imageSize, cardSize} from '../helpers/constants';
 
 interface MovieCardProps {
   movie: Movie;

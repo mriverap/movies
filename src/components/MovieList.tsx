@@ -9,7 +9,7 @@ import {
 import React from 'react';
 import {MovieCard} from './MovieCard';
 import {useMoviesData} from '../hooks/queries';
-import {cardSize} from '../hooks/constants';
+import {cardSize} from '../helpers/constants';
 import {HomeProps} from '../screens/Home';
 
 type MovieListProps = HomeProps & {
