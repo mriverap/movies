@@ -38,15 +38,18 @@ const SubTitle = ({movie}: SubTitleProps) => {
 };
 
 export const Details = ({route}: DetailsProps) => {
-  const {movie} = route.params;
-  const releaseDate = moment(movie.release_date);
+  const movie = route.params?.movie;
+  if (!movie) {
+    return <Text>Error loading movie</Text>;
+  }
+  const releaseDate = moment(movie?.release_date);
   return (
     <ScrollView style={styles.container}>
       <View style={styles.card}>
         <MovieCard movie={movie} imageSizeIndex={4} />
       </View>
       <View style={styles.details}>
-        <Text style={styles.title}>{movie.title}</Text>
+        <Text style={styles.title}>{movie?.title}</Text>
         <SubTitle movie={movie} />
         <DetailSection
           title="Release date"
@@ -54,7 +57,7 @@ export const Details = ({route}: DetailsProps) => {
         />
         <DetailSection title="Overview" content={movie.overview} />
       </View>
-      <CastList movie_id={movie.id} />
+      <CastList movie_id={movie.id.toString()} />
     </ScrollView>
   );
 };
