@@ -7,20 +7,13 @@ import {
   MoviesNowPlaying,
 } from '../interfaces';
 import {MOVIE_API_KEY} from '../../secrets';
-import {movieBaseUrl, configuratioAPIUrl} from '../helpers/constants';
+import {movieBaseUrl} from '../helpers/constants';
 
 const clientAPI = axios.create({
   baseURL: movieBaseUrl,
   params: {
     api_key: MOVIE_API_KEY,
     language: 'en-US',
-  },
-});
-
-const configAPI = axios.create({
-  baseURL: configuratioAPIUrl,
-  params: {
-    api_key: MOVIE_API_KEY,
   },
 });
 
@@ -43,7 +36,7 @@ export const useMovieCredits = (movie_id: string) => {
 export const useMoviesConfiguration = () => {
   const query = useQuery(
     ['movies', 'config'],
-    () => configAPI.get<MovieDBConfiguration>('/'),
+    () => clientAPI.get<MovieDBConfiguration>('/configuration'),
     {
       staleTime: 1000 * 60 * 60 * 24,
     },
