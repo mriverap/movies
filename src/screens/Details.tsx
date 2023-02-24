@@ -51,7 +51,12 @@ export const Details = ({route}: DetailsProps) => {
           title="Release date"
           content={releaseDate.format('MMMM Do, YYYY')}
         />
-        <DetailSection title="Overview" content={movie.overview} />
+        <DetailSection
+          title="Overview"
+          content={movie.overview}
+          setNumberOfLines={true}
+          numberOfLines={2}
+        />
       </View>
       <CastList movie_id={movie.id.toString()} />
     </ScrollView>
