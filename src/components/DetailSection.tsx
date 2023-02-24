@@ -4,18 +4,17 @@ import React from 'react';
 type DetailsSectionProps = {
   title: string;
   content: string;
-  setNumberOfLines?: boolean;
   numberOfLines?: number;
 };
 
 export const DetailSection = ({
   title,
   content,
-  setNumberOfLines = false,
   numberOfLines = 0,
 }: DetailsSectionProps) => {
   const [maxLines, setMaxLines] = React.useState<number>(numberOfLines);
   const [seeMore, setSeeMore] = React.useState<boolean>(true);
+  const showLink = React.useRef<boolean>(numberOfLines !== 0);
   return (
     <View>
       <View style={styles.title}>
@@ -25,7 +24,7 @@ export const DetailSection = ({
         <Text style={styles.contentText} numberOfLines={maxLines}>
           {content}
         </Text>
-        {setNumberOfLines && (
+        {showLink.current && (
           <TouchableOpacity
             onPress={() => {
               seeMore ? setMaxLines(0) : setMaxLines(numberOfLines);
