@@ -1,5 +1,11 @@
 import React from 'react';
-import {StyleSheet, View, ScrollView, Text} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 import type {StackScreenProps} from '@react-navigation/stack';
 import {Movie} from '../interfaces/movies';
 import {CastList, DetailSection, MovieCard} from '../components';
@@ -33,7 +39,7 @@ const SubTitle = ({movie}: SubTitleProps) => {
   );
 };
 
-export const Details = ({route}: DetailsProps) => {
+export const Details = ({route, navigation}: DetailsProps) => {
   const movie = route.params?.movie;
   if (!movie) {
     return <Text>Error loading movie</Text>;
@@ -59,6 +65,11 @@ export const Details = ({route}: DetailsProps) => {
         />
       </View>
       <CastList movie_id={movie.id.toString()} />
+      <TouchableOpacity
+        style={styles.backIcon}
+        onPress={() => navigation.pop()}>
+        <Icon name="arrow-back-circle-outline" size={40} color="grey" />
+      </TouchableOpacity>
     </ScrollView>
   );
 };
@@ -88,5 +99,10 @@ const styles = StyleSheet.create({
   },
   genresText: {
     marginLeft: 10,
+  },
+  backIcon: {
+    position: 'absolute',
+    top: 0,
+    left: 10,
   },
 });
