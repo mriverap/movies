@@ -9,7 +9,7 @@ export const useFade = () => {
       toValue: 1,
       duration: 300,
       useNativeDriver: true,
-    });
+    }).start();
   };
 
   const fadeOut = () => {
@@ -17,7 +17,7 @@ export const useFade = () => {
       toValue: 0,
       duration: 300,
       useNativeDriver: true,
-    });
+    }).start();
   };
 
   return {opacity, fadeIn, fadeOut};
