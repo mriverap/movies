@@ -12,6 +12,9 @@ import {MovieCard} from '../components';
 import {cardSize} from '../helpers/constants';
 import {useMoviesData} from '../hooks/queries';
 import {HomeProps} from '../screens/Home';
+import {getColors} from '../helpers/getColors';
+import {Movie} from '../interfaces';
+import {GradientContext} from '../context/GradientContext';
 
 type MovieCarouselProps = HomeProps & {
   filter: string;
@@ -27,6 +30,22 @@ export const MovieCarousel = ({
 }: MovieCarouselProps) => {
   const {width: windowWidth} = useWindowDimensions();
   const queryNowPlaying = useMoviesData(filter);
+  const {currentColors, updateCurrentColors, updatePreviousColors} =
+    React.useContext(GradientContext);
+  const movies = queryNowPlaying.data?.data.results;
+
+  const setGradientColors = React.useCallback(
+    async (movie: Movie) => {
+      const colors = await getColors(movie);
+      updatePreviousColors(currentColors);
+      colors && updateCurrentColors(colors);
+    },
+    [currentColors, updatePreviousColors, updateCurrentColors],
+  );
+
+  React.useEffect(() => {
+    movies && setGradientColors(movies[0]);
+  }, [movies]);
 
   if (queryNowPlaying.isLoading) {
     return <ActivityIndicator color="grey" size={10} />;
@@ -37,7 +56,7 @@ export const MovieCarousel = ({
           <Text style={styles.titleText}>{title}</Text>
         </View>
         <Carousel
-          data={queryNowPlaying.data?.data.results ?? []}
+          data={movies ?? []}
           renderItem={({item}) => {
             return (
               <TouchableOpacity
@@ -50,6 +69,10 @@ export const MovieCarousel = ({
           sliderWidth={windowWidth}
           itemWidth={cardSize[imageSize].width}
           layout={'default'}
+          onSnapToItem={index => {
+            const movie = movies && movies[index];
+            movie && setGradientColors(movie);
+          }}
         />
       </View>
     );
@@ -59,11 +82,13 @@ export const MovieCarousel = ({
 const styles = StyleSheet.create({
   title: {
     marginBottom: 5,
+    marginTop: 2,
     marginLeft: 10,
   },
   titleText: {
     fontSize: 20,
     fontWeight: 'bold',
+    color: '#FFFF',
   },
   carouselCard: {
     flex: 1,
