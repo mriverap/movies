@@ -38,7 +38,5 @@ export const Home = (props: HomeProps) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // marginTop: 30,
-    // marginBottom: 30,
   },
 });
