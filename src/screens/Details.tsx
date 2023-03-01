@@ -14,6 +14,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {RootStackParamList} from '../navigation/Navigator';
 import {useGenres} from '../hooks/queries';
 import moment from 'moment';
+import {GradientBackground} from '../components/GradientBackground';
 
 type DetailsProps = StackScreenProps<RootStackParamList, 'Details'>;
 
@@ -46,31 +47,32 @@ export const Details = ({route, navigation}: DetailsProps) => {
   }
   const releaseDate = moment(movie?.release_date);
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.card}>
-        <MovieCard movie={movie} imageSizeIndex={4} />
-      </View>
-      <View style={styles.details}>
-        <Text style={styles.title}>{movie?.title}</Text>
-        <SubTitle movie={movie} />
-        <DetailSection
-          title="Release date"
-          content={releaseDate.format('MMMM Do, YYYY')}
-        />
-        <DetailSection
-          title="Overview"
-          content={movie.overview}
-          // setNumberOfLines={true}
-          numberOfLines={3}
-        />
-      </View>
-      <CastList movie_id={movie.id.toString()} />
-      <TouchableOpacity
-        style={styles.backIcon}
-        onPress={() => navigation.pop()}>
-        <Icon name="arrow-back-circle-outline" size={40} color="grey" />
-      </TouchableOpacity>
-    </ScrollView>
+    <GradientBackground>
+      <ScrollView style={styles.container}>
+        <View style={styles.card}>
+          <MovieCard movie={movie} imageSizeIndex={4} />
+        </View>
+        <View style={styles.details}>
+          <Text style={styles.title}>{movie?.title}</Text>
+          <SubTitle movie={movie} />
+          <DetailSection
+            title="Release date"
+            content={releaseDate.format('MMMM Do, YYYY')}
+          />
+          <DetailSection
+            title="Overview"
+            content={movie.overview}
+            numberOfLines={3}
+          />
+        </View>
+        <CastList movie_id={movie.id.toString()} />
+        <TouchableOpacity
+          style={styles.backIcon}
+          onPress={() => navigation.pop()}>
+          <Icon name="arrow-back-circle-outline" size={40} color="grey" />
+        </TouchableOpacity>
+      </ScrollView>
+    </GradientBackground>
   );
 };
 
