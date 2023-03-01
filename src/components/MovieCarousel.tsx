@@ -9,12 +9,12 @@ import {
 } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import {MovieCard} from '../components';
-import {cardSize} from '../helpers/constants';
-import {useMoviesData} from '../hooks/queries';
-import {HomeProps} from '../screens/Home';
-import {getColors} from '../helpers/getColors';
-import {Movie} from '../interfaces';
 import {GradientContext} from '../context/GradientContext';
+import {cardSize} from '../helpers/constants';
+import {getColors} from '../helpers/getColors';
+import {useMoviesData} from '../hooks/queries';
+import {Movie} from '../interfaces';
+import {HomeProps} from '../screens/Home';
 
 type MovieCarouselProps = HomeProps & {
   filter: string;

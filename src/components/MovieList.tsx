@@ -8,8 +8,8 @@ import {
 } from 'react-native';
 import React from 'react';
 import {MovieCard} from './MovieCard';
-import {useMoviesData} from '../hooks/queries';
 import {cardSize} from '../helpers/constants';
+import {useMoviesData} from '../hooks/queries';
 import {HomeProps} from '../screens/Home';
 
 type MovieListProps = HomeProps & {

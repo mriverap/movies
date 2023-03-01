@@ -6,15 +6,18 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
+import moment from 'moment';
+import Icon from 'react-native-vector-icons/Ionicons';
 import type {StackScreenProps} from '@react-navigation/stack';
 import {Movie} from '../interfaces/movies';
-import {CastList, DetailSection, MovieCard} from '../components';
-import Icon from 'react-native-vector-icons/Ionicons';
-
-import {RootStackParamList} from '../navigation/Navigator';
+import {
+  CastList,
+  DetailSection,
+  GradientBackground,
+  MovieCard,
+} from '../components';
 import {useGenres} from '../hooks/queries';
-import moment from 'moment';
-import {GradientBackground} from '../components/GradientBackground';
+import {RootStackParamList} from '../navigation/Navigator';
 
 type DetailsProps = StackScreenProps<RootStackParamList, 'Details'>;
 

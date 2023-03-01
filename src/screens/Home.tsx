@@ -1,8 +1,7 @@
 import React from 'react';
 import {StyleSheet, ScrollView} from 'react-native';
 import type {StackScreenProps} from '@react-navigation/stack';
-import {MovieCarousel, MovieList} from '../components';
-import {GradientBackground} from '../components/GradientBackground';
+import {GradientBackground, MovieCarousel, MovieList} from '../components';
 import {RootStackParamList} from '../navigation/Navigator';
 
 export type HomeProps = StackScreenProps<RootStackParamList, 'Home'>;

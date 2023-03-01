@@ -1,5 +1,5 @@
-import {imageBaseUrl, imageSize as imageSizeArray} from '../helpers/constants';
 import ImageColors from 'react-native-image-colors';
+import {imageBaseUrl, imageSize as imageSizeArray} from '../helpers/constants';
 import {Movie} from '../interfaces';
 
 export const getColors = async (movie: Movie) => {

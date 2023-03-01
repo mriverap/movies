@@ -6,8 +6,8 @@ import {
   MovieDBConfiguration,
   MoviesNowPlaying,
 } from '../interfaces';
-import {MOVIE_API_KEY} from '../../secrets';
 import {movieBaseUrl} from '../helpers/constants';
+import {MOVIE_API_KEY} from '../../secrets';
 
 const clientAPI = axios.create({
   baseURL: movieBaseUrl,
