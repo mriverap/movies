@@ -1,11 +1,6 @@
 import axios from 'axios';
 import {useQuery} from '@tanstack/react-query';
-import {
-  Credits,
-  Genres,
-  MovieDBConfiguration,
-  MoviesNowPlaying,
-} from '../interfaces';
+import {Credits, Genres, MovieDBConfiguration, MovieList} from '../interfaces';
 import {movieBaseUrl} from '../helpers/constants';
 import {MOVIE_API_KEY} from '../../secrets';
 
