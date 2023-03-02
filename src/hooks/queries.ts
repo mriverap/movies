@@ -1,6 +1,11 @@
 import axios from 'axios';
 import {useQuery} from '@tanstack/react-query';
-import {Credits, Genres, MovieDBConfiguration, MovieList} from '../interfaces';
+import {
+  Credits,
+  Genres,
+  MovieDBConfiguration,
+  MovieResults,
+} from '../interfaces';
 import {movieBaseUrl} from '../helpers/constants';
 import {MOVIE_API_KEY} from '../../secrets';
 
@@ -15,7 +20,7 @@ const clientAPI = axios.create({
 // now_playing, upcoming, popular, top_rated
 export const useMoviesData = (filter: string, page: number = 1) => {
   const query = useQuery(['movie', filter, page], () =>
-    clientAPI.get<MovieList>(`/movie/${filter}?region=US&page=${page}`),
+    clientAPI.get<MovieResults>(`/movie/${filter}?region=US&page=${page}`),
   );
 
   return query;
