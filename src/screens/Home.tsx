@@ -19,15 +19,15 @@ export const Home = (props: HomeProps) => {
         <MovieList {...props} filter="popular" imageSize={2} title="Popular" />
         <MovieList
           {...props}
-          filter="top_rated"
-          imageSize={2}
-          title="Top rated"
-        />
-        <MovieList
-          {...props}
           filter="upcoming"
           imageSize={2}
           title="Upcoming"
+        />
+        <MovieList
+          {...props}
+          filter="top_rated"
+          imageSize={2}
+          title="Top rated"
         />
       </ScrollView>
     </GradientBackground>
