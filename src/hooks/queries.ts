@@ -13,9 +13,9 @@ const clientAPI = axios.create({
 });
 
 // now_playing, upcoming, popular, top_rated
-export const useMoviesData = (filter: string) => {
-  const query = useQuery(['movie', filter], () =>
-    clientAPI.get<MoviesNowPlaying>(`/movie/${filter}`),
+export const useMoviesData = (filter: string, page: number = 1) => {
+  const query = useQuery(['movie', filter, page], () =>
+    clientAPI.get<MovieList>(`/movie/${filter}?region=US&page=${page}`),
   );
 
   return query;
