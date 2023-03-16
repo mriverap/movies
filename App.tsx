@@ -8,6 +8,12 @@ import {GradientProvider} from './src/context/GradientContext';
 
 const queryClient = new QueryClient();
 
+if (__DEV__) {
+  import('react-query-native-devtools').then(({ addPlugin }) => {
+    addPlugin({ queryClient });
+  });
+}
+
 LogBox.ignoreLogs(['ViewPropTypes']);
 
 const App = () => {
