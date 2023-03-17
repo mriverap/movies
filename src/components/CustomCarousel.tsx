@@ -1,7 +1,7 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import {useMoviesData} from '../hooks/queries'
-import {MoviePoster} from '../components';
+import {MovieCard} from '../components';
 
 export const CustomCarousel = () => {
   const query = useMoviesData('now_playing');
@@ -18,7 +18,7 @@ export const CustomCarousel = () => {
       data={query.data?.data.results}
       renderItem={({item}) => {
             return (
-                <MoviePoster movie={item} 
+                <MovieCard movie={item} 
                 imageSizeIndex={3} />
             );
           }}
