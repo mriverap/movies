@@ -14,7 +14,7 @@ import {
   CastList,
   DetailSection,
   GradientBackground,
-  MovieCard,
+  MoviePoster,
 } from '../components';
 import {useGenres} from '../hooks/queries';
 import {RootStackParamList} from '../navigation/Navigator';
@@ -53,7 +53,7 @@ export const Details = ({route, navigation}: DetailsProps) => {
     <GradientBackground>
       <ScrollView style={styles.container}>
         <View style={styles.card}>
-          <MovieCard movie={movie} imageSizeIndex={4} />
+          <MoviePoster movie={movie} imageSizeIndex={4} />
         </View>
         <View style={styles.details}>
           <Text style={styles.title}>{movie?.title}</Text>

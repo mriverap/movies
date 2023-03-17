@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React from 'react';
-import {MovieCard} from './MovieCard';
+import {MoviePoster} from './MoviePoster';
 import {cardSize} from '../helpers/constants';
 import {useMoviesData} from '../hooks/queries';
 import {HomeProps} from '../screens/Home';
@@ -41,7 +41,7 @@ export const MovieList = ({
               <TouchableOpacity
                 onPress={() => navigation.navigate('Details', {movie: item})}
                 style={{marginRight: cardSize[imageSize].width / 10}}>
-                <MovieCard movie={item} imageSizeIndex={imageSize} />
+                <MoviePoster movie={item} imageSizeIndex={imageSize} />
               </TouchableOpacity>
             );
           }}

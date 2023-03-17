@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
-import {MovieCard} from '../components';
+import {MoviePoster} from '../components';
 import {GradientContext} from '../context/GradientContext';
 import {cardSize} from '../helpers/constants';
 import {getColors} from '../helpers/getColors';
@@ -62,7 +62,7 @@ export const MovieCarousel = ({
               <TouchableOpacity
                 onPress={() => navigation.navigate('Details', {movie: item})}
                 style={styles.carouselCard}>
-                <MovieCard movie={item} imageSizeIndex={imageSize} />
+                <MoviePoster movie={item} imageSizeIndex={imageSize} />
               </TouchableOpacity>
             );
           }}

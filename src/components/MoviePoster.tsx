@@ -3,12 +3,12 @@ import React from 'react';
 import {Movie} from '../interfaces';
 import {imageBaseUrl, imageSize, cardSize} from '../helpers/constants';
 
-interface MovieCardProps {
+interface MoviePoster {
   movie: Movie;
   imageSizeIndex: number;
 }
 
-export const MovieCard = ({movie, imageSizeIndex}: MovieCardProps) => {
+export const MoviePoster = ({movie, imageSizeIndex}: MoviePoster) => {
   const uri = `${imageBaseUrl}${imageSize[imageSizeIndex]}${movie.poster_path}`;
   return (
     <View
