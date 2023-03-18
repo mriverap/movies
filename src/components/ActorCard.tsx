@@ -26,18 +26,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
     elevation: 5,
     margin: 5,
     borderColor: 'grey',
     paddingTop: 12,
     paddingBottom: 1,
+
+    borderWidth: StyleSheet.hairlineWidth,
     paddingLeft: 5,
   },
   textContainer: {

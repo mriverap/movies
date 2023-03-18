@@ -25,17 +25,10 @@ const styles = StyleSheet.create({
   imageContainer: {
     flex: 1,
     borderRadius: 18,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
   },
   image: {
     flex: 1,
     borderRadius: 18,
+    height: '100%'
   },
 });
