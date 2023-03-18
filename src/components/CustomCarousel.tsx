@@ -11,20 +11,23 @@ export const CustomCarousel = () => {
   }
 
   return (
-    <View>
-      <Text>Carousel</Text>
+    <View style={styles.container}>
+      <View style={styles.carousel}>
       <FlatList
       horizontal={true}
       data={query.data?.data.results}
-      renderItem={({item}) => {
-            return (
-                <MovieCard movie={item} 
-                imageSizeIndex={3} />
-            );
-          }}
-      />
+      renderItem={({item}) =><MovieCard movie={item} />}/>
+      </View>
     </View>
   )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center'
+  },
+  carousel: {
+
+  }
+})
